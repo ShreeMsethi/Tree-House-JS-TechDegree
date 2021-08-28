@@ -63,6 +63,7 @@ let quotes = [
   {
      quote: "Truth alone will endure, all the rest will be swept always in the tide of Time.",
      source: "Mahatma Gandhi",
+     citation: "August Kranti",
      year: "Aug 8th, 1942"
   }
 ]
@@ -76,8 +77,6 @@ console.log(quotes.length);
 // Create the getRandomQuote function
 // The getRandomQuote function should create a random number, 
 // and use that random number to return a random quote object from the quotes array.
-
-
 
 // In the function body, create a variable to store a random number ranging from zero 
 // to the index of the last item in the quotes array.
@@ -115,21 +114,46 @@ function printQuote(){
   // the second closing `</p>` tag for now
   let quoteString = `<p class="quote"> ${randomQuote.quote} </p>` + `<p class="source"> ${randomQuote.source}`; 
 
-  // 3. Use an if statement to check if the citation property 
-  // exists, and if it does, concatenate a <span></span> 
-  // element, appropriate className, and citation property 
-  // to the HTML string
-  if (quotes.citation === true){
-    quoteString + `<span class="citation"> ${randomQuote.citation} </span>`;
-  };
+  
+  //***************************************************************/
+  // 3. if statement to check if the citation property exists, and if it does, concatenate a <span></span> 
+  // element, appropriate className, and citation property to the HTML string
 
-  // 4. Use an if statement to check of the year property exists, 
-  // and if it does, concatenate a <span></span> element, 
-  // appropriate className, and year property to the HTML 
-  //string
-  if (quotes.year === true){
-    quoteString + `<span class="year"> ${randomQuote.year} </span>`;
-  };
+  //****** Using the "Filter" Method for checking if citation exists ******/
+ if (quotes.filter(obj => obj.property === 'citation')){
+  quoteString += `<span class="citation"> ${randomQuote.citation} </span>`;
+  }
+
+  //******* Using the "Object.keys" Method for checking if citation exists *******/
+  // if (Object.keys(quotes).includes('citation')){
+  //   quoteString += `<span class="citation"> ${randomQuote.citation} </span>`;
+  //   };
+  
+  //******* Using simple if statement for checking if citation exists *******/
+  // if (quotes.citation === true){
+  // quoteString += `<span class="citation"> ${randomQuote.citation} </span>`;
+  // };
+
+
+  //***************************************************************/  
+  // 4. if statement to check of the year property exists,and if it does, concatenate a <span></span> element, 
+  // appropriate className, and year property to the HTML string
+
+  //** Using the "Filter" Method for checking if citation exists **/
+ if (quotes.filter(obj => obj.property === 'year')){
+    quoteString += `<span class="year"> ${randomQuote.year} </span>`;
+  }
+
+   //****** Using the "Object.keys" Method for checking if citation exists *****/
+  // if (Object.keys(quotes).includes('year')){
+  //   quoteString += `<span class="year"> ${randomQuote.year} </span>`;
+  //   };
+
+  // if (quotes.year === true){
+  //   quoteString += `<span class="year"> ${randomQuote.year} </span>`;
+  // };
+
+
 
   // 5. After the two if statements, concatenate the closing </p> 
   // tag to the HTML string
@@ -138,19 +162,13 @@ function printQuote(){
   // 6. set the innerHTML of the quote-box div to equal the 
   // complete HTML string
   document.getElementById('quote-box').innerHTML = quoteString; 
-}
+};
 
-window.setInterval(printQuote(), 500);
 
 function randomColor(){
-  var randColor = Math.floor(Math.random() * 16777215).toString(16);
-  document.body.style.backgroundColor = randColor;
-  // body.innerHTML = "#" + randColor;
-  return randColor
+  let randColor = Math.floor(Math.random() * 16777215).toString(16);
+  return document.body.style.backgroundColor = randColor;
 }
-
-
-
 
 
 /***
@@ -158,4 +176,11 @@ function randomColor(){
  * DO NOT CHANGE THE CODE BELOW!!
 ***/
 
-document.getElementById('load-quote').addEventListener("click", printQuote, randomColor(), false);
+document.getElementById('load-quote').addEventListener("click", printQuote, false);
+document.getElementById('load-quote').addEventListener("click", randomColor);
+
+//********** Auto refresh Every 5 secs ************/
+
+// window.setTimeout(function () {
+//   window.location.reload();
+// }, 5000);
