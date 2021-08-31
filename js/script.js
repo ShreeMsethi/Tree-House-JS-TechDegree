@@ -133,12 +133,17 @@ function getRandomColor(){
     return mainBody.style.backgroundColor = color + randomColor
 }
 
-// ********************* Auto Refresh function *************************
-// function autoRefresh(){
-//     setInterval(function(){
-//         window.location.reload(1);
-//     }, 2000);
-// };
+// // ********************* Auto Refresh function *************************
+// // function autoRefresh(){
+// //     setInterval(function(){
+// //       window.location.reload(1);  
+// //     }, 2000);
+// // };
+
+
+// setInterval(() => {
+//   location.reload();
+// }, 3000, printQuote, getRandomColor);
 
 
 /***
